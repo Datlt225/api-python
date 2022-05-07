@@ -1,16 +1,7 @@
 from fastapi import APIRouter, Depends
 from sql_app import schemas, crud
-from sql_app.database import SessionLocal, engine
+from sql_app.database import get_db
 from sqlalchemy.orm import Session
-
-
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 router = APIRouter(

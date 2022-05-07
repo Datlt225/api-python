@@ -1,20 +1,8 @@
 from fastapi import APIRouter, Depends
 from sql_app import schemas, crud
-from sql_app.database import SessionLocal, engine
+from sql_app.database import get_db
 from sql_app import models
 from sqlalchemy.orm import Session
-
-print('chỗ này tạo csdl nè')
-models.Base.metadata.create_all(bind=engine)
-
-
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 router = APIRouter(
